@@ -1,1 +1,1977 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marchella — Body Recomposition HQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1C1714;
+  --ink2: #3D2E28;
+  --mid: #7A6860;
+  --soft: #B8A89E;
+  --cream: #FAF6F0;
+  --warm: #F4EDE4;
+  --card: #FFFFFF;
+  --terra: #C4714A;
+  --terra2: #E8956D;
+  --terra-bg: rgba(196,113,74,0.08);
+  --sage: #6E9E7E;
+  --sage2: #9EC4AE;
+  --sage-bg: rgba(110,158,126,0.08);
+  --gold: #C49A3A;
+  --gold2: #E4C070;
+  --gold-bg: rgba(196,154,58,0.08);
+  --blue: #4A7FA5;
+  --blue-bg: rgba(74,127,165,0.08);
+  --danger: #A03A3A;
+  --danger-bg: rgba(160,58,58,0.08);
+  --shadow: 0 2px 20px rgba(28,23,20,0.07);
+  --shadow-hover: 0 6px 32px rgba(28,23,20,0.13);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
 
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(196,113,74,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 85%, rgba(110,158,126,0.07) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+/* SCROLL PROGRESS */
+#scrollBar {
+  position: fixed; top:0; left:0; height:3px;
+  background: linear-gradient(90deg, var(--terra), var(--gold), var(--sage));
+  z-index: 200; transition: width 0.1s linear;
+}
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,246,240,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(28,23,20,0.06);
+  padding: 0 16px;
+}
+
+.nav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  flex-shrink: 0;
+  padding: 14px 18px;
+  font-size: 12px; font-weight: 500;
+  color: var(--mid);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.nav-btn:hover { color: var(--terra); }
+.nav-btn.active { color: var(--terra); border-bottom-color: var(--terra); }
+
+/* CONTAINER */
+.wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; position: relative; z-index: 1; }
+
+/* PAGE */
+.page { display: none; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+/* TYPOGRAPHY */
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 700; line-height: 1.15;
+  color: var(--ink); margin-bottom: 4px;
+}
+
+.page-title em { font-style: italic; color: var(--terra); }
+
+.page-sub {
+  font-size: 13px; color: var(--mid);
+  font-weight: 300; margin-bottom: 24px;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 12px; display: block;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover { box-shadow: var(--shadow-hover); }
+
+/* GRID */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+
+/* STAT BOX */
+.stat {
+  background: var(--warm);
+  border-radius: var(--radius-sm);
+  padding: 14px 12px;
+  text-align: center;
+  border: 1.5px solid transparent;
+}
+
+.stat-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px; font-weight: 500;
+  color: var(--ink); line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-lbl { font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.badge {
+  display: inline-block;
+  font-size: 9px; font-family: 'DM Mono', monospace;
+  padding: 2px 8px; border-radius: 10px; margin-top: 4px;
+}
+
+.b-over { background: rgba(196,113,74,0.15); color: var(--terra); }
+.b-under { background: rgba(160,58,58,0.12); color: var(--danger); }
+.b-ok { background: rgba(110,158,126,0.15); color: var(--sage); }
+.b-warn { background: rgba(196,154,58,0.15); color: var(--gold); }
+
+/* PROGRESS BAR */
+.prog-row { margin-bottom: 14px; }
+.prog-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+.prog-name { font-weight: 500; color: var(--ink); }
+.prog-nums { font-family: 'DM Mono', monospace; color: var(--mid); font-size: 11px; }
+.prog-bar { height: 8px; background: var(--warm); border-radius: 4px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 4px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+.fill-fat { background: linear-gradient(90deg, var(--terra), var(--terra2)); }
+.fill-mus { background: linear-gradient(90deg, var(--sage), var(--sage2)); }
+.fill-wat { background: linear-gradient(90deg, var(--blue), #84C1EE); }
+.fill-bmr { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+
+/* INSIGHT */
+.insight {
+  border-radius: var(--radius-sm);
+  padding: 14px 16px; margin: 12px 0;
+  border-left: 3px solid var(--terra);
+  background: var(--terra-bg);
+}
+.insight.sage { border-left-color: var(--sage); background: var(--sage-bg); }
+.insight.gold { border-left-color: var(--gold); background: var(--gold-bg); }
+.insight.blue { border-left-color: var(--blue); background: var(--blue-bg); }
+.insight.danger { border-left-color: var(--danger); background: var(--danger-bg); }
+
+.insight-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 5px;
+}
+.insight.sage .insight-tag { color: var(--sage); }
+.insight.gold .insight-tag { color: var(--gold); }
+.insight.blue .insight-tag { color: var(--blue); }
+.insight.danger .insight-tag { color: var(--danger); }
+
+.insight-text { font-size: 13px; color: var(--ink); line-height: 1.65; }
+
+/* CHECKLIST */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+.chk {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px;
+  background: var(--warm); border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer; transition: all 0.22s;
+  user-select: none;
+}
+
+.chk:hover { border-color: var(--sage2); }
+.chk.on { background: rgba(110,158,126,0.08); border-color: var(--sage); }
+
+.chk-box {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border-radius: 7px; border: 2px solid var(--soft);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.22s; margin-top: 1px;
+}
+
+.chk.on .chk-box { background: var(--sage); border-color: var(--sage); }
+
+.chk-box::after {
+  content: '';
+  width: 5px; height: 9px;
+  border: 2px solid white;
+  border-top: none; border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 0; transition: opacity 0.2s;
+}
+.chk.on .chk-box::after { opacity: 1; }
+
+.chk-body { flex: 1; }
+.chk-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.chk.on .chk-title { color: var(--sage); }
+.chk-desc { font-size: 11px; color: var(--mid); line-height: 1.5; }
+.chk-pill {
+  font-size: 9px; font-family: 'DM Mono', monospace;
+  padding: 2px 8px; border-radius: 8px;
+  background: var(--sage-bg); color: var(--sage);
+  align-self: flex-start; margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ─────────────── DAILY UPDATE ─────────────── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1/-1; }
+.form-label { font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 0.04em; }
+
+.form-input, .form-select, .form-textarea {
+  background: var(--warm);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px; color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--terra);
+  background: white;
+}
+
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.slider-row { display: flex; align-items: center; gap: 12px; }
+.slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 6px; border-radius: 3px;
+  background: var(--warm);
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--terra);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(196,113,74,0.4);
+  transition: transform 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.slider-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px; font-weight: 500;
+  color: var(--terra); min-width: 28px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; border: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--terra); color: white;
+  box-shadow: 0 4px 16px rgba(196,113,74,0.35);
+}
+.btn-primary:hover { background: var(--terra2); transform: translateY(-1px); }
+
+.btn-secondary {
+  background: var(--warm); color: var(--ink);
+  border: 1.5px solid rgba(28,23,20,0.1);
+}
+.btn-secondary:hover { border-color: var(--terra); color: var(--terra); }
+
+/* ANALYSIS BOX */
+.analysis-box {
+  display: none;
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 16px;
+  animation: fadeIn 0.4s ease;
+}
+
+.analysis-box.show { display: block; }
+.analysis-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.analysis-icon { font-size: 24px; }
+.analysis-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: white; }
+.analysis-sub { font-size: 11px; color: var(--soft); }
+
+.analysis-section { margin-bottom: 14px; }
+.analysis-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--terra2);
+  margin-bottom: 6px;
+}
+
+.analysis-text { font-size: 13px; color: #E8DDD8; line-height: 1.7; }
+
+.alert-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 600;
+  margin: 4px 4px 4px 0;
+}
+
+.alert-danger { background: rgba(160,58,58,0.3); color: #FF9999; }
+.alert-warn { background: rgba(196,154,58,0.3); color: #FFD080; }
+.alert-ok { background: rgba(110,158,126,0.3); color: #80D4A0; }
+
+/* ─────────────── WEEKLY CHART ─────────────── */
+.chart-wrap {
+  background: var(--warm);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.chart-title { font-size: 12px; font-weight: 600; color: var(--mid); margin-bottom: 12px; }
+
+canvas { width: 100% !important; border-radius: 8px; }
+
+.week-entry-form {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-bottom: 12px;
+}
+
+.week-stat-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 10px; margin-top: 16px;
+}
+
+.week-stat {
+  background: var(--warm); border-radius: var(--radius-sm);
+  padding: 12px; text-align: center;
+}
+
+.week-stat-val { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--ink); }
+.week-stat-lbl { font-size: 10px; color: var(--mid); margin-top: 2px; }
+.week-stat-chg { font-size: 10px; font-family: 'DM Mono', monospace; margin-top: 2px; }
+.chg-up { color: var(--terra); }
+.chg-down { color: var(--sage); }
+
+/* ─────────────── DECISION ─────────────── */
+.decision-input-wrap { position: relative; margin-bottom: 16px; }
+.decision-input {
+  width: 100%;
+  background: var(--warm);
+  border: 1.5px solid transparent;
+  border-radius: 50px;
+  padding: 14px 60px 14px 22px;
+  font-size: 14px; color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.2s;
+}
+.decision-input:focus { border-color: var(--terra); background: white; }
+.decision-send {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--terra); border: none;
+  color: white; cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.decision-send:hover { background: var(--terra2); transform: translateY(-50%) scale(1.05); }
+
+.quick-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.quick-btn {
+  padding: 8px 14px; border-radius: 20px;
+  background: var(--warm); border: 1.5px solid rgba(28,23,20,0.08);
+  font-size: 12px; color: var(--mid);
+  cursor: pointer; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.quick-btn:hover { border-color: var(--terra); color: var(--terra); background: var(--terra-bg); }
+
+.decision-result {
+  display: none;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  animation: popIn 0.35s ease;
+}
+
+.decision-result.show { display: block; }
+
+@keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.decision-verdict {
+  padding: 20px 22px 16px;
+  display: flex; align-items: center; gap: 16px;
+}
+
+.verdict-yes { background: linear-gradient(135deg, rgba(110,158,126,0.15), rgba(110,158,126,0.08)); border: 1.5px solid var(--sage); }
+.verdict-no { background: linear-gradient(135deg, rgba(160,58,58,0.12), rgba(196,113,74,0.08)); border: 1.5px solid var(--danger); }
+.verdict-maybe { background: linear-gradient(135deg, rgba(196,154,58,0.12), rgba(196,154,58,0.06)); border: 1.5px solid var(--gold); }
+
+.verdict-badge {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 700;
+  line-height: 1; flex-shrink: 0;
+}
+
+.vb-yes { color: var(--sage); }
+.vb-no { color: var(--danger); }
+.vb-maybe { color: var(--gold); }
+
+.verdict-body { flex: 1; }
+.verdict-q { font-size: 11px; color: var(--mid); margin-bottom: 4px; font-style: italic; }
+.verdict-reason { font-size: 13px; color: var(--ink); line-height: 1.6; font-weight: 500; }
+.verdict-action {
+  padding: 12px 22px;
+  background: rgba(28,23,20,0.03);
+  border-top: 1px solid rgba(28,23,20,0.06);
+}
+.verdict-action-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 4px;
+}
+.verdict-action-text { font-size: 12px; color: var(--ink); line-height: 1.5; }
+
+/* ─────────────── ALERT ─────────────── */
+.alert-card {
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  border: 1.5px solid;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+
+.alert-danger-card { background: var(--danger-bg); border-color: rgba(160,58,58,0.3); }
+.alert-warn-card { background: var(--gold-bg); border-color: rgba(196,154,58,0.3); }
+.alert-ok-card { background: var(--sage-bg); border-color: rgba(110,158,126,0.3); }
+
+.alert-emoji { font-size: 24px; flex-shrink: 0; }
+.alert-body { flex: 1; }
+.alert-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.alert-desc { font-size: 12px; color: var(--mid); line-height: 1.6; }
+.alert-fix {
+  margin-top: 10px; padding: 10px 12px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+}
+.alert-fix-label { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); margin-bottom: 4px; }
+.alert-fix-text { font-size: 12px; color: var(--ink); line-height: 1.5; }
+
+/* ─────────────── MEAL LOG ─────────────── */
+.meal-log-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(28,23,20,0.05);
+}
+.meal-log-item:last-child { border-bottom: none; }
+.meal-time-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--terra); font-weight: 500;
+  min-width: 52px; padding-top: 2px;
+}
+.meal-log-body { flex: 1; }
+.meal-log-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.meal-log-desc { font-size: 11px; color: var(--mid); line-height: 1.5; margin-bottom: 6px; }
+.macro-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.macro { font-size: 10px; font-family: 'DM Mono', monospace; padding: 2px 8px; border-radius: 8px; }
+.m-p { background: var(--sage-bg); color: var(--sage); }
+.m-c { background: var(--gold-bg); color: var(--gold); }
+.m-f { background: var(--terra-bg); color: var(--terra); }
+.m-cal { background: rgba(74,127,165,0.1); color: var(--blue); }
+
+/* PROTEIN GAUGE */
+.protein-gauge-wrap { text-align: center; padding: 8px 0 16px; }
+.gauge-ring { position: relative; width: 100px; height: 100px; margin: 0 auto 8px; }
+.gauge-ring svg { transform: rotate(-90deg); }
+.gauge-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gauge-g { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: var(--ink); line-height: 1; }
+.gauge-unit { font-size: 9px; color: var(--mid); letter-spacing: 0.05em; }
+.gauge-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+.gauge-sub { font-size: 11px; color: var(--mid); }
+
+/* FOOD ADD FORM */
+.food-add-row {
+  display: grid; grid-template-columns: 1fr 80px 80px 80px;
+  gap: 8px; margin-bottom: 10px;
+}
+
+.logged-food { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.logged-food-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; background: var(--warm); border-radius: 8px;
+  font-size: 12px;
+}
+.logged-food-name { flex: 1; font-weight: 500; color: var(--ink); }
+.logged-food-macro { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid); }
+.logged-food-del {
+  background: none; border: none; cursor: pointer;
+  color: var(--soft); font-size: 14px; transition: color 0.2s;
+}
+.logged-food-del:hover { color: var(--danger); }
+
+/* TOTALS BAR */
+.totals-bar {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  padding: 12px 14px;
+  background: var(--warm); border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+}
+.total-item { text-align: center; }
+.total-val { font-family: 'DM Mono', monospace; font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1; }
+.total-lbl { font-size: 9px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+/* WATER CUPS */
+.water-cups { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+.cup {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 2px solid #84C1EE; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer;
+  transition: all 0.2s; background: white;
+}
+.cup.full { background: linear-gradient(180deg, #84C1EE, #5B9BD5); border-color: #5B9BD5; }
+
+/* TRACKER GRID */
+.tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.tracker-tile {
+  background: var(--warm); border-radius: var(--radius-sm);
+  padding: 14px 12px; border: 1.5px solid transparent;
+  cursor: pointer; transition: all 0.22s;
+}
+.tracker-tile:hover { border-color: var(--sage2); }
+.tracker-tile.done { border-color: var(--sage); background: rgba(110,158,126,0.08); }
+.tracker-emoji { font-size: 20px; margin-bottom: 5px; }
+.tracker-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+.tracker-tile.done .tracker-name { color: var(--sage); }
+.tracker-goal { font-size: 10px; color: var(--mid); font-family: 'DM Mono', monospace; margin-top: 2px; }
+
+/* STREAK */
+.streak-wrap { margin: 14px 0; }
+.streak-days { display: flex; gap: 4px; }
+.streak-day {
+  flex: 1; height: 6px; border-radius: 3px;
+  background: var(--warm); border: 1px solid rgba(28,23,20,0.07);
+  cursor: pointer; transition: all 0.2s;
+}
+.streak-day.done { background: var(--sage); }
+.streak-lbl-row { display: flex; justify-content: space-between; margin-top: 4px; }
+.s-lbl { font-size: 9px; color: var(--soft); font-family: 'DM Mono', monospace; }
+
+/* CELEBRATION */
+.celebrate {
+  display: none; text-align: center; padding: 16px;
+  background: linear-gradient(135deg, var(--sage-bg), var(--gold-bg));
+  border-radius: var(--radius-sm); margin-top: 12px;
+  animation: popIn 0.4s ease;
+}
+.celebrate.show { display: block; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 26px; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 8px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--terra), var(--sage), var(--gold));
+  border-radius: 2px;
+}
+.tl-item { position: relative; padding: 0 0 20px 14px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -18px; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--terra); border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--terra);
+}
+.tl-item:nth-child(2) .tl-dot { background: var(--sage); box-shadow: 0 0 0 2px var(--sage); }
+.tl-item:nth-child(3) .tl-dot { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+.tl-item:nth-child(4) .tl-dot { background: var(--sage); box-shadow: 0 0 0 2px var(--sage); }
+.tl-period { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--terra); letter-spacing: 0.08em; margin-bottom: 3px; }
+.tl-item:nth-child(2) .tl-period { color: var(--sage); }
+.tl-item:nth-child(3) .tl-period { color: var(--gold); }
+.tl-item:nth-child(4) .tl-period { color: var(--sage); }
+.tl-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.tl-text { font-size: 12px; color: var(--mid); line-height: 1.6; }
+
+/* AVOID */
+.avoid-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 12px;
+  background: var(--danger-bg); border-radius: var(--radius-sm);
+  border-left: 3px solid var(--danger); margin-bottom: 8px;
+}
+.avoid-icon { font-size: 15px; flex-shrink: 0; }
+.avoid-text { font-size: 12px; color: var(--ink); line-height: 1.5; }
+.avoid-text strong { color: var(--danger); }
+
+/* SCORE BANNER */
+.score-banner {
+  background: var(--ink); border-radius: var(--radius);
+  padding: 24px 22px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 18px;
+  position: relative; overflow: hidden;
+}
+.score-banner::before {
+  content: ''; position: absolute;
+  top: -40px; right: -40px;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(196,113,74,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.score-circle {
+  width: 76px; height: 76px; flex-shrink: 0;
+  border-radius: 50%; border: 2.5px solid var(--terra);
+  background: rgba(196,113,74,0.12);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.score-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--terra2); line-height: 1; }
+.score-s { font-size: 9px; color: var(--soft); letter-spacing: 0.1em; text-transform: uppercase; }
+.score-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: white; margin-bottom: 4px; }
+.score-info p { font-size: 12px; color: var(--soft); line-height: 1.5; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.tg { font-size: 9px; font-family: 'DM Mono', monospace; padding: 2px 8px; border-radius: 10px; }
+.tg-w { background: rgba(196,113,74,0.3); color: var(--terra2); }
+.tg-o { background: rgba(110,158,126,0.3); color: var(--sage2); }
+.tg-g { background: rgba(196,154,58,0.25); color: var(--gold2); }
+
+/* RECOVERY ALERT */
+.recovery-alert {
+  background: linear-gradient(135deg, rgba(196,113,74,0.07), rgba(196,154,58,0.05));
+  border: 1px solid rgba(196,113,74,0.25);
+  border-radius: var(--radius); padding: 14px 16px;
+  margin-bottom: 18px; display: flex; gap: 12px;
+}
+.ra-icon { font-size: 18px; flex-shrink: 0; }
+.ra-text { font-size: 12px; color: var(--ink); line-height: 1.65; }
+.ra-text strong { color: var(--terra); }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(28,23,20,0.08), transparent); margin: 18px 0; }
+
+/* FOOTER */
+.footer { text-align: center; font-size: 11px; color: var(--soft); margin-top: 40px; font-style: italic; }
+
+/* HISTORY TABLE */
+.hist-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.hist-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); padding: 8px 10px; text-align: left; border-bottom: 1px solid rgba(28,23,20,0.08); }
+.hist-table td { padding: 10px 10px; border-bottom: 1px solid rgba(28,23,20,0.05); color: var(--ink); }
+.hist-table tr:last-child td { border-bottom: none; }
+.hist-table tr:hover td { background: var(--warm); }
+
+/* LOADING SPINNER */
+.spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 520px) {
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .week-entry-form { grid-template-columns: 1fr 1fr; }
+  .food-add-row { grid-template-columns: 1fr 1fr; }
+  .week-stat-row { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<div id="scrollBar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showPage('overview')">📊 Overview</button>
+    <button class="nav-btn" onclick="showPage('daily')">📋 Daily Update</button>
+    <button class="nav-btn" onclick="showPage('weekly')">📈 Weekly Chart</button>
+    <button class="nav-btn" onclick="showPage('decision')">⚡ Decision</button>
+    <button class="nav-btn" onclick="showPage('alerts')">🚨 Alerts</button>
+    <button class="nav-btn" onclick="showPage('meallog')">🍽️ Meal Log</button>
+    <button class="nav-btn" onclick="showPage('habits')">✅ Habits</button>
+    <button class="nav-btn" onclick="showPage('plan')">🗺️ Plan</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="page-overview" class="page active">
+  <div class="page-title">Marchella's <em>Recomposition</em> HQ</div>
+  <div class="page-sub">34 yr · 164 cm · Female · Scan: 20 Apr 2026</div>
+
+  <div class="recovery-alert">
+    <div class="ra-icon">⚠️</div>
+    <div class="ra-text"><strong>Mode Pemulihan Aktif.</strong> Pasca diare minggu ini: fokus RESTORE dulu. Makan cukup, elektrolit, latihan turun 40%. Tubuhmu butuh bahan bakar, bukan defisit.</div>
+  </div>
+
+  <div class="score-banner">
+    <div class="score-circle">
+      <div class="score-num">67</div>
+      <div class="score-s">score</div>
+    </div>
+    <div class="score-info">
+      <h3>Skinny Fat Profile — Tapi Bisa Diubah</h3>
+      <p>Berat normal, komposisi tubuh perlu dibenahi. Dengan strategi tepat, ini sangat achievable.</p>
+      <div class="tag-row">
+        <span class="tg tg-w">Lemak Tinggi</span>
+        <span class="tg tg-w">Otot Rendah</span>
+        <span class="tg tg-o">BMI Normal</span>
+        <span class="tg tg-g">Metabolik Age 36</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="section-label">Komposisi Tubuh Sekarang</span>
+  <div class="card">
+    <div class="grid3" style="margin-bottom:16px;">
+      <div class="stat"><div class="stat-val">53.1</div><div class="stat-lbl">Weight (kg)</div><span class="badge b-ok">normal</span></div>
+      <div class="stat"><div class="stat-val">34.2%</div><div class="stat-lbl">Body Fat</div><span class="badge b-over">over</span></div>
+      <div class="stat"><div class="stat-val">33.1</div><div class="stat-lbl">Muscle (kg)</div><span class="badge b-under">under</span></div>
+      <div class="stat"><div class="stat-val">1138</div><div class="stat-lbl">BMR (kcal)</div><span class="badge b-under">rendah</span></div>
+      <div class="stat"><div class="stat-val">25.5</div><div class="stat-lbl">Body Water</div><span class="badge b-under">low</span></div>
+      <div class="stat"><div class="stat-val">0.395</div><div class="stat-lbl">ECW/TBW</div><span class="badge b-over">inflamasi</span></div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-top"><span class="prog-name">Body Fat → Target 28%</span><span class="prog-nums">34.2% sekarang</span></div>
+      <div class="prog-bar"><div class="prog-fill fill-fat" data-w="85" style="width:0%"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-top"><span class="prog-name">Muscle Mass → Target 40.2 kg</span><span class="prog-nums">33.1 kg sekarang</span></div>
+      <div class="prog-bar"><div class="prog-fill fill-mus" data-w="35" style="width:0%"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-top"><span class="prog-name">Body Water → Target 28.4 kg</span><span class="prog-nums">25.5 kg sekarang</span></div>
+      <div class="prog-bar"><div class="prog-fill fill-wat" data-w="45" style="width:0%"></div></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-top"><span class="prog-name">BMR → Target 1300+ kcal</span><span class="prog-nums">1138 kcal sekarang</span></div>
+      <div class="prog-bar"><div class="prog-fill fill-bmr" data-w="28" style="width:0%"></div></div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-tag">🧠 Penjelasan</div>
+      <div class="insight-text">ECW/TBW 0.395 menandakan <strong>low-grade inflammation</strong> — dari psoriasis, hipertiroid, atau riwayat under-eating. Otot 7+ kg di bawah target → BMR rendah, perut nampak buncit meski berat normal, energi gampang habis.</div>
+    </div>
+
+    <div class="insight sage">
+      <div class="insight-tag">✨ Kabar Baik</div>
+      <div class="insight-text">BFP 34.2% masih "normal" di chart. Kamu bukan obesitas. Dengan gym 4x/week yang sudah berjalan, kamu sudah punya pondasi yang benar.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ DAILY UPDATE ══════════ -->
+<div id="page-daily" class="page">
+  <div class="page-title"><em>Daily</em> Update</div>
+  <div class="page-sub">Isi setiap hari → dapat analisis & rekomendasi 24–48 jam ke depan</div>
+
+  <div class="card">
+    <span class="section-label">Input Harian</span>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Berat Badan (kg)</label>
+        <input class="form-input" id="d-weight" type="number" step="0.1" placeholder="53.1" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tanggal</label>
+        <input class="form-input" id="d-date" type="date" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Level Energi: <span id="energy-lbl" style="color:var(--terra);font-weight:600;">5</span>/10</label>
+        <div class="slider-row">
+          <span style="font-size:11px;color:var(--mid);">💤</span>
+          <input class="slider" id="d-energy" type="range" min="1" max="10" value="5" oninput="document.getElementById('energy-lbl').textContent=this.value" />
+          <span style="font-size:11px;color:var(--mid);">⚡</span>
+          <span class="slider-val" id="energy-lbl2" style="display:none;"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pencernaan</label>
+        <select class="form-select" id="d-digestion">
+          <option value="normal">✅ Normal</option>
+          <option value="diarrhea">🚨 Diare</option>
+          <option value="bloating">😮‍💨 Kembung</option>
+          <option value="constipation">⚠️ Sembelit</option>
+          <option value="nausea">🤢 Mual</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tidur (jam)</label>
+        <input class="form-input" id="d-sleep" type="number" step="0.5" min="3" max="12" placeholder="7.5" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kualitas Tidur: <span id="sleep-lbl" style="color:var(--terra);">5</span>/10</label>
+        <div class="slider-row">
+          <input class="slider" id="d-sleepq" type="range" min="1" max="10" value="5" oninput="document.getElementById('sleep-lbl').textContent=this.value" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gym / Latihan?</label>
+        <select class="form-select" id="d-gym">
+          <option value="yes-strength">✅ Ya — Strength</option>
+          <option value="yes-cardio">🏃 Ya — Cardio</option>
+          <option value="yes-light">🚶 Ya — Ringan</option>
+          <option value="no-rest">❌ Tidak — Rest Day</option>
+          <option value="no-sick">🤒 Tidak — Sakit</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Air Minum (L)</label>
+        <input class="form-input" id="d-water" type="number" step="0.1" min="0" max="5" placeholder="2.0" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Ringkasan Makanan Hari Ini</label>
+        <textarea class="form-textarea" id="d-food" placeholder="Contoh: Siang – nasi + ayam + sayur. Sore – telur 2 + pisang. Malam – ikan + brokoli + tahu..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Kondisi Khusus / Catatan</label>
+        <textarea class="form-textarea" id="d-notes" placeholder="Flare psoriasis? Urtikaria? Stress tinggi? Periode? Sakit?" style="min-height:60px;"></textarea>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeDaily()">🔍 Analisis Hari Ini</button>
+      <button class="btn btn-secondary" onclick="saveDailyLog()">💾 Simpan Log</button>
+    </div>
+  </div>
+
+  <div class="analysis-box" id="analysisBox">
+    <div class="analysis-header">
+      <div class="analysis-icon">🧠</div>
+      <div>
+        <div class="analysis-title">Analisis Harianmu</div>
+        <div class="analysis-sub" id="analysis-date-label">—</div>
+      </div>
+    </div>
+    <div id="analysis-content"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <span class="section-label">Riwayat Log Harian</span>
+    <div style="overflow-x:auto;">
+      <table class="hist-table" id="histTable">
+        <thead>
+          <tr>
+            <th>Tanggal</th><th>Berat</th><th>Energi</th><th>Pencernaan</th><th>Tidur</th><th>Gym</th>
+          </tr>
+        </thead>
+        <tbody id="histBody">
+          <tr><td colspan="6" style="color:var(--soft);font-size:12px;padding:16px 10px;">Belum ada log. Isi form di atas!</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ WEEKLY CHART ══════════ -->
+<div id="page-weekly" class="page">
+  <div class="page-title"><em>Weekly</em> Progress</div>
+  <div class="page-sub">Trend berat & komposisi — visualisasi perubahan nyata vs fluktuasi</div>
+
+  <div class="card">
+    <span class="section-label">Tambah Data Mingguan</span>
+    <div class="week-entry-form">
+      <div class="form-group">
+        <label class="form-label">Tanggal / Minggu</label>
+        <input class="form-input" id="w-date" type="date" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Berat (kg)</label>
+        <input class="form-input" id="w-weight" type="number" step="0.1" placeholder="53.1" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">BFP % (opsional)</label>
+        <input class="form-input" id="w-bfp" type="number" step="0.1" placeholder="34.2" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Muscle (kg, opsional)</label>
+        <input class="form-input" id="w-muscle" type="number" step="0.1" placeholder="33.1" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Energi Avg (1–10)</label>
+        <input class="form-input" id="w-energy" type="number" min="1" max="10" placeholder="6" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gym Sessions</label>
+        <input class="form-input" id="w-gym" type="number" min="0" max="7" placeholder="4" />
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addWeeklyData()">➕ Tambah Data</button>
+  </div>
+
+  <div class="card">
+    <span class="section-label">Trend Berat Badan (kg)</span>
+    <div class="chart-wrap">
+      <canvas id="weightChart" height="200"></canvas>
+    </div>
+
+    <span class="section-label" style="margin-top:8px;">Trend Body Fat % vs Muscle (kg)</span>
+    <div class="chart-wrap">
+      <canvas id="compChart" height="200"></canvas>
+    </div>
+
+    <div class="week-stat-row" id="weekStats">
+      <div class="week-stat"><div class="week-stat-val" id="ws-current">—</div><div class="week-stat-lbl">Berat Terakhir</div></div>
+      <div class="week-stat"><div class="week-stat-val" id="ws-change">—</div><div class="week-stat-lbl">Perubahan</div><div class="week-stat-chg" id="ws-chg-label"></div></div>
+      <div class="week-stat"><div class="week-stat-val" id="ws-avg">—</div><div class="week-stat-lbl">Rata-rata</div></div>
+      <div class="week-stat"><div class="week-stat-val" id="ws-sessions">—</div><div class="week-stat-lbl">Total Gym</div></div>
+    </div>
+
+    <div class="insight gold" style="margin-top:14px;" id="weekInsight">
+      <div class="insight-tag">📊 Interpretasi</div>
+      <div class="insight-text">Tambahkan minimal 2 titik data untuk melihat analisis trend yang berarti. Ukur di pagi hari, setelah toilet, sebelum makan — kondisi yang sama setiap minggu.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ DECISION ══════════ -->
+<div id="page-decision" class="page">
+  <div class="page-title"><em>Decision</em> Mode</div>
+  <div class="page-sub">Tanya apa saja → dapat jawaban langsung YES / NO + action step</div>
+
+  <div class="card">
+    <div class="quick-btns">
+      <button class="quick-btn" onclick="quickDecision('Boleh gym hari ini? Energi lagi rendah')">💪 Gym hari ini?</button>
+      <button class="quick-btn" onclick="quickDecision('Boleh makan nasi putih malam ini?')">🍚 Nasi malam?</button>
+      <button class="quick-btn" onclick="quickDecision('Kenapa perut kembung setelah makan?')">😮‍💨 Kenapa kembung?</button>
+      <button class="quick-btn" onclick="quickDecision('Boleh skip makan siang hari ini?')">⏭️ Skip makan siang?</button>
+      <button class="quick-btn" onclick="quickDecision('Boleh minum kopi sebelum gym?')">☕ Kopi pre-gym?</button>
+      <button class="quick-btn" onclick="quickDecision('Berat naik 1kg dari kemarin, gimana?')">⚖️ Berat naik tiba-tiba?</button>
+      <button class="quick-btn" onclick="quickDecision('Boleh makan gorengan sekali-sekali?')">🍟 Gorengan sekali?</button>
+      <button class="quick-btn" onclick="quickDecision('Lagi flare psoriasis, tetap gym?')">🔥 Flare — tetap gym?</button>
+    </div>
+
+    <div class="decision-input-wrap">
+      <input class="decision-input" id="decisionInput" placeholder="Tanya apapun... cth: 'Boleh makan ini?' atau 'Kenapa lemas?'" onkeydown="if(event.key==='Enter')getDecision()" />
+      <button class="decision-send" onclick="getDecision()">→</button>
+    </div>
+  </div>
+
+  <div class="decision-result" id="decisionResult">
+    <div class="decision-verdict" id="decisionVerdict">
+      <div class="verdict-badge" id="verdictBadge"></div>
+      <div class="verdict-body">
+        <div class="verdict-q" id="verdictQ"></div>
+        <div class="verdict-reason" id="verdictReason"></div>
+      </div>
+    </div>
+    <div class="verdict-action">
+      <div class="verdict-action-label">Action Step</div>
+      <div class="verdict-action-text" id="verdictAction"></div>
+    </div>
+  </div>
+
+  <div class="card" id="decisionHistory">
+    <span class="section-label">Riwayat Pertanyaan</span>
+    <div id="decisionHistList" style="color:var(--soft);font-size:12px;padding:8px 0;">Belum ada pertanyaan.</div>
+  </div>
+</div>
+
+<!-- ══════════ ALERTS ══════════ -->
+<div id="page-alerts" class="page">
+  <div class="page-title"><em>Condition</em> Alerts</div>
+  <div class="page-sub">Monitor aktif — sistem mendeteksi risiko dari data harianmu</div>
+
+  <div id="alertsContainer">
+    <!-- Dynamic alerts -->
+    <div class="alert-card alert-danger-card">
+      <div class="alert-emoji">🚨</div>
+      <div class="alert-body">
+        <div class="alert-title">Under-eating Risk</div>
+        <div class="alert-desc">BMR kamu 1138 kcal. Makan di bawah 1300 kcal/hari akan memperlambat metabolisme dan menghambat pertumbuhan otot.</div>
+        <div class="alert-fix">
+          <div class="alert-fix-label">⚡ Koreksi Segera</div>
+          <div class="alert-fix-text">Target 1400–1550 kcal/hari. Prioritaskan protein 106g+. Jangan skip meal manapun.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-card alert-warn-card">
+      <div class="alert-emoji">⚠️</div>
+      <div class="alert-body">
+        <div class="alert-title">Dehydration + Elektrolit Imbalance</div>
+        <div class="alert-desc">Pasca diare: body water 25.5 kg (target 28.4 kg). ECW/TBW 0.395 menunjukkan distribusi cairan tidak optimal.</div>
+        <div class="alert-fix">
+          <div class="alert-fix-label">⚡ Koreksi Segera</div>
+          <div class="alert-fix-text">2–2.5L air/hari + air kelapa atau oralit alami 3–5 hari ke depan. Tambahkan garam himalaya ke makanan.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-card alert-warn-card">
+      <div class="alert-emoji">⚠️</div>
+      <div class="alert-body">
+        <div class="alert-title">Muscle Loss Risk</div>
+        <div class="alert-desc">Muscle mass 33.1 kg (target 40.2 kg). Riwayat under-eating + kondisi hipertiroid meningkatkan risiko muscle breakdown.</div>
+        <div class="alert-fix">
+          <div class="alert-fix-label">⚡ Koreksi Segera</div>
+          <div class="alert-fix-text">Protein 2.0–2.2g/kg = 106–117g/hari. Makan protein di setiap meal. Jangan puasa lebih dari 16 jam.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-card alert-warn-card">
+      <div class="alert-emoji">🔥</div>
+      <div class="alert-body">
+        <div class="alert-title">Low-Grade Inflammation Detected</div>
+        <div class="alert-desc">ECW/TBW 0.395 (batas atas normal). Kombinasi psoriasis + hipertiroid + riwayat under-eating menciptakan kondisi inflamasi kronis rendah.</div>
+        <div class="alert-fix">
+          <div class="alert-fix-label">⚡ Strategi Anti-inflamasi</div>
+          <div class="alert-fix-text">Prioritaskan: ikan berlemak (salmon/sarden), kunyit+lada hitam, jahe, sayur fermentasi (tempe, kimchi). Hindari: gula tinggi, gluten berlebihan, minyak goreng bekas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-card alert-ok-card">
+      <div class="alert-emoji">✅</div>
+      <div class="alert-body">
+        <div class="alert-title">Gym Frequency — On Track</div>
+        <div class="alert-desc">4x/week strength training sudah ideal untuk body recomposition. BMI 20.0 dalam range normal. Steps 7–10k/hari sangat baik.</div>
+        <div class="alert-fix">
+          <div class="alert-fix-label">💡 Pertahankan</div>
+          <div class="alert-fix-text">Jangan tambah frekuensi gym. Fokus pada progressive overload (naikkan beban perlahan) dan pastikan tidur 7–8 jam untuk recovery optimal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="section-label">Deteksi Manual — Input Kondisi Kamu</span>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Kalori hari ini (kcal)</label>
+        <input class="form-input" id="al-cal" type="number" placeholder="1400" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Protein hari ini (g)</label>
+        <input class="form-input" id="al-prot" type="number" placeholder="106" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Jam tidur tadi malam</label>
+        <input class="form-input" id="al-sleep" type="number" step="0.5" placeholder="7" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kondisi kulit/alergi?</label>
+        <select class="form-select" id="al-skin">
+          <option value="ok">✅ Normal</option>
+          <option value="mild">⚠️ Sedikit flare</option>
+          <option value="bad">🚨 Flare parah</option>
+          <option value="urtik">🔴 Urtikaria</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="checkAlerts()">🔍 Cek Kondisiku Sekarang</button>
+  </div>
+  <div id="dynamicAlerts" style="margin-top:14px;"></div>
+</div>
+
+<!-- ══════════ MEAL LOG ══════════ -->
+<div id="page-meallog" class="page">
+  <div class="page-title"><em>Meal</em> Log</div>
+  <div class="page-sub">Track makanan harian & pantau target protein 106g/hari</div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;">
+      <div class="gauge-ring">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EDE4" stroke-width="10"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#6E9E7E" stroke-width="10"
+            stroke-dasharray="251" id="proteinArc" stroke-dashoffset="251" stroke-linecap="round"/>
+        </svg>
+        <div class="gauge-center">
+          <div class="gauge-g" id="proteinTotal">0g</div>
+          <div class="gauge-unit">/ 106g</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="gauge-label">Protein Hari Ini</div>
+        <div class="gauge-sub" id="proteinStatus" style="color:var(--mid);font-size:12px;">Belum ada makanan ditambahkan</div>
+        <div class="totals-bar" style="margin-top:10px;padding:10px 12px;">
+          <div class="total-item"><div class="total-val" id="totalCal">0</div><div class="total-lbl">kcal</div></div>
+          <div class="total-item"><div class="total-val" id="totalProt">0g</div><div class="total-lbl">protein</div></div>
+          <div class="total-item"><div class="total-val" id="totalCarb">0g</div><div class="total-lbl">carbs</div></div>
+          <div class="total-item"><div class="total-val" id="totalFat">0g</div><div class="total-lbl">fat</div></div>
+        </div>
+      </div>
+    </div>
+
+    <span class="section-label">Tambah Makanan</span>
+    <div class="food-add-row">
+      <div class="form-group">
+        <label class="form-label">Nama Makanan</label>
+        <input class="form-input" id="f-name" placeholder="cth: Dada ayam 100g" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Protein (g)</label>
+        <input class="form-input" id="f-prot" type="number" placeholder="30" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Carbs (g)</label>
+        <input class="form-input" id="f-carb" type="number" placeholder="0" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fat (g)</label>
+        <input class="form-input" id="f-fat" type="number" placeholder="3" />
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+      <button class="btn btn-primary" onclick="addFood()">➕ Tambah</button>
+      <button class="quick-btn" onclick="addFoodQuick('Dada ayam 100g',31,0,3)">🍗 Ayam 100g</button>
+      <button class="quick-btn" onclick="addFoodQuick('Telur rebus 1 butir',6,0,5)">🥚 Telur 1 btr</button>
+      <button class="quick-btn" onclick="addFoodQuick('Tahu 100g',8,2,5)">🟡 Tahu 100g</button>
+      <button class="quick-btn" onclick="addFoodQuick('Salmon 100g',25,0,12)">🐟 Salmon 100g</button>
+      <button class="quick-btn" onclick="addFoodQuick('Tempe 100g',20,7,9)">🟫 Tempe 100g</button>
+      <button class="quick-btn" onclick="addFoodQuick('Nasi 100g (matang)',3,28,0)">🍚 Nasi 100g</button>
+      <button class="quick-btn" onclick="addFoodQuick('Greek Yogurt 150g',13,8,1)">🥛 Greek Yogurt</button>
+      <button class="quick-btn" onclick="addFoodQuick('Pisang 1 buah',1,25,0)">🍌 Pisang</button>
+    </div>
+
+    <ul class="logged-food" id="foodList">
+      <li style="color:var(--soft);font-size:12px;padding:8px;">Belum ada makanan. Tambahkan di atas! 👆</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="section-label">Meal Structure Harianmu</span>
+    <div class="meal-log-item">
+      <div class="meal-time-tag">12:00</div>
+      <div class="meal-log-body">
+        <div class="meal-log-name">🌅 Meal 1 — Break Fast (Besar)</div>
+        <div class="meal-log-desc">Nasi/oat + 2 telur + dada ayam/ikan + sayur tumis + 1 sdm olive oil</div>
+        <div class="macro-row">
+          <span class="macro m-p">~40g protein</span><span class="macro m-c">~50g carbs</span><span class="macro m-f">~15g fat</span><span class="macro" style="background:var(--blue-bg);color:var(--blue);">~495 kcal</span>
+        </div>
+      </div>
+    </div>
+    <div class="meal-log-item">
+      <div class="meal-time-tag">15:00</div>
+      <div class="meal-log-body">
+        <div class="meal-log-name">💪 Pre/Post Workout Snack</div>
+        <div class="meal-log-desc">Greek yogurt / tahu sutra + buah / tempe + pisang</div>
+        <div class="macro-row">
+          <span class="macro m-p">~25g protein</span><span class="macro m-c">~30g carbs</span><span class="macro m-f">~8g fat</span><span class="macro" style="background:var(--blue-bg);color:var(--blue);">~296 kcal</span>
+        </div>
+      </div>
+    </div>
+    <div class="meal-log-item">
+      <div class="meal-time-tag">18:30</div>
+      <div class="meal-log-body">
+        <div class="meal-log-name">🌙 Dinner</div>
+        <div class="meal-log-desc">Ikan/ayam/telur + brokoli/bayam + ubi/nasi merah sedikit</div>
+        <div class="macro-row">
+          <span class="macro m-p">~35g protein</span><span class="macro m-c">~30g carbs</span><span class="macro m-f">~12g fat</span><span class="macro" style="background:var(--blue-bg);color:var(--blue);">~372 kcal</span>
+        </div>
+      </div>
+    </div>
+    <div class="meal-log-item">
+      <div class="meal-time-tag">21:00</div>
+      <div class="meal-log-body">
+        <div class="meal-log-name">🌛 Evening Protein</div>
+        <div class="meal-log-desc">Susu tinggi protein / cottage cheese / 2 telur rebus</div>
+        <div class="macro-row">
+          <span class="macro m-p">~20g protein</span><span class="macro m-c">~10g carbs</span><span class="macro m-f">~5g fat</span><span class="macro" style="background:var(--blue-bg);color:var(--blue);">~165 kcal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HABITS ══════════ -->
+<div id="page-habits" class="page">
+  <div class="page-title"><em>Daily</em> Habits</div>
+  <div class="page-sub">Tap untuk checklist · Konsistensi ini yang akan mengubah tubuhmu</div>
+
+  <div class="card">
+    <span class="section-label">8 Habit Harian</span>
+    <div class="tracker-grid">
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🥩</div>
+        <div class="tracker-name">Protein 106g+</div>
+        <div class="tracker-goal">Target: 106g/hari</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">💧</div>
+        <div class="tracker-name">Minum 2L+ Air</div>
+        <div class="tracker-goal">Target: 2–2.5L/hari</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🏋️</div>
+        <div class="tracker-name">Gym / Latihan</div>
+        <div class="tracker-goal">4x per minggu</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🚶</div>
+        <div class="tracker-name">Steps 7k+</div>
+        <div class="tracker-goal">7.000–10.000 langkah</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">😴</div>
+        <div class="tracker-name">Tidur 7–8 Jam</div>
+        <div class="tracker-goal">Sebelum tengah malam</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🥦</div>
+        <div class="tracker-name">Sayur Anti-inflamasi</div>
+        <div class="tracker-goal">3+ porsi sayur</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🚫</div>
+        <div class="tracker-name">No Gula Berlebih</div>
+        <div class="tracker-goal">Max 25g gula tambahan</div>
+      </div>
+      <div class="tracker-tile" onclick="toggleTile(this)">
+        <div class="tracker-emoji">🧘</div>
+        <div class="tracker-name">Stress Management</div>
+        <div class="tracker-goal">10 min relax/breathe</div>
+      </div>
+    </div>
+    <div class="celebrate" id="celebrate">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);">🎉 Luar biasa, Marchella!</div>
+      <div style="font-size:12px;color:var(--mid);margin-top:4px;">Semua habit hari ini selesai. Konsistensi ini yang akan mengubah segalanya ✨</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="section-label">💧 Water Intake Tracker</span>
+    <div class="water-cups" id="waterCups">
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+      <div class="cup" onclick="fillCup(this)">🥛</div>
+    </div>
+    <div style="font-size:10px;color:var(--soft);font-family:'DM Mono',monospace;margin-top:6px;">Setiap cup = 250ml · 8 cups = 2L · <span id="waterCount">0</span>/8 cup terisi</div>
+  </div>
+
+  <div class="card">
+    <span class="section-label">📅 7-Day Streak</span>
+    <div class="streak-wrap">
+      <div class="streak-days" id="streakDays">
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Senin"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Selasa"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Rabu"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Kamis"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Jumat"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Sabtu"></div>
+        <div class="streak-day" onclick="this.classList.toggle('done')" title="Minggu"></div>
+      </div>
+      <div class="streak-lbl-row">
+        <span class="s-lbl">Sen</span><span class="s-lbl">Sel</span><span class="s-lbl">Rab</span>
+        <span class="s-lbl">Kam</span><span class="s-lbl">Jum</span><span class="s-lbl">Sab</span><span class="s-lbl">Min</span>
+      </div>
+    </div>
+    <div class="insight sage" style="margin-top:12px;">
+      <div class="insight-tag">💡 Ingat</div>
+      <div class="insight-text">Streak bukan tentang sempurna — tapi tentang kembali setelah jeda. Satu hari terlewat bukan kegagalan. Reset dan lanjut. 🌿</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PLAN ══════════ -->
+<div id="page-plan" class="page">
+  <div class="page-title">The <em>Plan</em></div>
+  <div class="page-sub">Panduan lengkap — latihan, recovery, dan yang harus dihindari</div>
+
+  <div class="card">
+    <span class="section-label">🏋️ Training Adjustments</span>
+    <ul class="checklist">
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Prioritaskan Compound Lift</div><div class="chk-desc">Squat, deadlift, hip thrust, row, overhead press — paling efisien untuk bangun otot & naikkan BMR</div></div>
+        <div class="chk-pill">muscle builder</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Rep Range 8–12 untuk Hipertrofi</div><div class="chk-desc">Beban cukup berat (RIR 2–3). Jangan terlalu ringan — tidak akan stimulasi otot tumbuh</div></div>
+        <div class="chk-pill">hypertrophy</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Fokus Core & Glute</div><div class="chk-desc">Plank variasi, dead bug, glute bridge — untuk perut lebih flat & postur lebih baik</div></div>
+        <div class="chk-pill">abdomen</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Cardio Minimal — Steps Sudah Cukup</div><div class="chk-desc">Steps 7–10k sudah bagus. HIIT max 1x/week. Cardio berlebih akan makan otot.</div></div>
+        <div class="chk-pill">fat loss</div>
+      </li>
+      <li class="chk on" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">⚠️ Minggu Ini: Turunkan Intensitas 40%</div><div class="chk-desc">Pasca sakit: gerakan sama, beban lebih ringan, istirahat antar set lebih panjang</div></div>
+        <div class="chk-pill">recovery week</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="section-label">🌙 Recovery Strategy</span>
+    <ul class="checklist">
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Tidur 7–8 jam sebelum tengah malam</div><div class="chk-desc">GH diproduksi 23.00–02.00. Kurang tidur = otot tidak tumbuh, kortisol naik, lemak perut susah turun. Krusial untuk hipertiroid & autoimun.</div></div>
+        <div class="chk-pill">hormonal</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">2–2.5L air/hari + elektrolit</div><div class="chk-desc">Body water low. Pasca diare: tambahkan air kelapa / oralit alami (air + garam + gula sedikit) 3–5 hari ke depan.</div></div>
+        <div class="chk-pill">hydration</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Kelola Stres Aktif — untuk Urtikaria</div><div class="chk-desc">Urtikaria dipicu stres fisik/emosional. Sisipkan 10–15 menit napas dalam, journaling, atau apapun yang menenangkan.</div></div>
+        <div class="chk-pill">anti-stress</div>
+      </li>
+      <li class="chk" onclick="this.classList.toggle('on')">
+        <div class="chk-box"></div>
+        <div class="chk-body"><div class="chk-title">Suplemen Dasar yang Aman</div><div class="chk-desc">Vit D3+K2, Magnesium Glycinate (malam hari), Zinc, Omega-3. Konsultasi dokter untuk penyesuaian dengan obat hipertiroid.</div></div>
+        <div class="chk-pill">supplement</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="section-label">⛔ Yang Harus Dihindari</span>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Makan di bawah 1.300 kcal/hari.</strong> Ini yang buat BMR turun dan otot tidak tumbuh. Under-eating = musuh utama body recomp.</div></div>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Skip protein.</strong> Hari tanpa 106g+ protein = hari yang terbuang untuk muscle building.</div></div>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Cardio marathon.</strong> Lebih dari 40 menit intensif akan memperlambat pertumbuhan otot.</div></div>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Gula tinggi + processed food.</strong> Memperparah inflamasi, memicu flare psoriasis, dan menghambat body recomp.</div></div>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Push keras saat tubuh belum pulih.</strong> Dengan autoimun, overtraining memicu flare. Rest = strategi.</div></div>
+    <div class="avoid-item"><div class="avoid-icon">🚫</div><div class="avoid-text"><strong>Timbang setiap hari dan panik.</strong> Berat bisa naik 1–2 kg karena air & siklus. Ukur progress tiap 4 minggu.</div></div>
+  </div>
+
+  <div class="card">
+    <span class="section-label">📅 Timeline Realistis</span>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">MINGGU 1–3 · Recovery & Foundation</div>
+        <div class="tl-title">Restore & Rebuild</div>
+        <div class="tl-text">Energi mulai stabil. Body water naik. Pencernaan normal. Berat mungkin naik sedikit (bukan lemak — itu cairan kembali). Jangan panik.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">BULAN 1–2 · Metabolic Adaptation</div>
+        <div class="tl-title">BMR Naik, Energi Membaik</div>
+        <div class="tl-text">BMR naik ke 1.200–1.300. Lemak turun 0.5–1 kg/bulan. Kekuatan gym meningkat. Baju lebih longgar di perut.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">BULAN 3–4 · Visible Change</div>
+        <div class="tl-title">Perubahan Mulai Terlihat</div>
+        <div class="tl-text">Muscle naik 1–2 kg. BFP turun ke 31–32%. Postur lebih baik. Perut lebih flat. Energi jauh lebih stabil.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">BULAN 6+ · Transformation</div>
+        <div class="tl-title">Target BFP 28–30% Tercapai</div>
+        <div class="tl-text">BFP 28–30% achievable dalam 6–9 bulan dengan konsistensi penuh. Muscle mass 36–38 kg. BMR di atas 1.200. Ini gaya hidup baru.</div>
+      </div>
+    </div>
+    <div class="insight gold" style="margin-top:14px;">
+      <div class="insight-tag">🎯 Penting</div>
+      <div class="insight-text">Dengan hipertiroid & autoimun, perubahan bisa lebih lambat atau tidak linear. Flare bisa terjadi — itu bukan kegagalan. Ukur dari energi, kekuatan, dan bagaimana baju terasa — bukan hanya angka timbangan.</div>
+    </div>
+  </div>
+
+  <div class="footer">Dibuat dari data scan VISBODY 20 Apr 2026 · Konsultasikan dengan dokter endokrin & dermatologi · Marchella, kamu sudah di jalur yang benar 🌿</div>
+</div>
+
+</div><!-- end wrap -->
+
+<script>
+// ── INIT ──
+window.addEventListener('load', () => {
+  setDefaultDates();
+  animateProgressBars();
+  initCharts();
+  loadStorage();
+});
+
+window.addEventListener('scroll', () => {
+  const p = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scrollBar').style.width = p + '%';
+});
+
+function setDefaultDates() {
+  const today = new Date().toISOString().split('T')[0];
+  ['d-date','w-date'].forEach(id => { const el = document.getElementById(id); if(el) el.value = today; });
+}
+
+// ── NAV ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── PROGRESS BARS ──
+function animateProgressBars() {
+  setTimeout(() => {
+    document.querySelectorAll('.prog-fill[data-w]').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 400);
+}
+
+// ── STORAGE ──
+let appData = { dailyLogs: [], weeklyData: [], foods: [], decisionHistory: [] };
+
+function loadStorage() {
+  try {
+    const saved = localStorage.getItem('marchella_hq');
+    if (saved) appData = JSON.parse(saved);
+    renderHistTable();
+    renderFoodList();
+    updateWeeklyChart();
+  } catch(e) {}
+}
+
+function saveStorage() {
+  try { localStorage.setItem('marchella_hq', JSON.stringify(appData)); } catch(e) {}
+}
+
+// ── DAILY ANALYSIS ──
+function analyzeDaily() {
+  const weight = parseFloat(document.getElementById('d-weight').value) || 53.1;
+  const energy = parseInt(document.getElementById('d-energy').value);
+  const digestion = document.getElementById('d-digestion').value;
+  const sleep = parseFloat(document.getElementById('d-sleep').value) || 7;
+  const sleepq = parseInt(document.getElementById('d-sleepq').value);
+  const gym = document.getElementById('d-gym').value;
+  const water = parseFloat(document.getElementById('d-water').value) || 0;
+  const food = document.getElementById('d-food').value;
+  const notes = document.getElementById('d-notes').value;
+  const date = document.getElementById('d-date').value;
+
+  const btn = document.getElementById('analyzeBtn');
+  btn.innerHTML = '<span class="spinner"></span> Menganalisis...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.innerHTML = '🔍 Analisis Hari Ini';
+    btn.disabled = false;
+
+    // Generate analysis
+    let alerts = [];
+    let status = 'ok';
+
+    // Check conditions
+    if (energy <= 4) { alerts.push({ type: 'warn', text: '⚠️ Energi Rendah' }); }
+    if (energy <= 2) { alerts.push({ type: 'danger', text: '🚨 Energi Kritis' }); status = 'danger'; }
+    if (digestion === 'diarrhea') { alerts.push({ type: 'danger', text: '🚨 Diare Aktif' }); status = 'danger'; }
+    if (digestion === 'bloating') { alerts.push({ type: 'warn', text: '⚠️ Kembung' }); }
+    if (sleep < 6) { alerts.push({ type: 'danger', text: '🚨 Tidur Kurang' }); }
+    if (sleep < 7) { alerts.push({ type: 'warn', text: '⚠️ Tidur Borderline' }); }
+    if (water < 1.5) { alerts.push({ type: 'danger', text: '🚨 Dehidrasi' }); }
+    if (water < 2) { alerts.push({ type: 'warn', text: '⚠️ Air Kurang' }); }
+    if (alerts.length === 0) alerts.push({ type: 'ok', text: '✅ Semua Baik' });
+
+    // Weight interpretation
+    const baseline = 53.1;
+    const diff = weight - baseline;
+    let weightInterp = '';
+    if (Math.abs(diff) < 0.5) weightInterp = 'Berat stabil. Normal — fluktuasi harian ±0.5kg itu biasa dari cairan & makanan.';
+    else if (diff > 0 && diff < 1.5) weightInterp = `Naik ${diff.toFixed(1)} kg dari baseline. Ini kemungkinan besar <strong>fluktuasi cairan / makanan</strong>, bukan lemak. BUKAN kegagalan.`;
+    else if (diff > 1.5) weightInterp = `Naik ${diff.toFixed(1)} kg. Kemungkinan retensi cairan (dari inflamasi, siklus, atau sodium tinggi). Minum lebih banyak air, kurangi sodium.`;
+    else if (diff < 0 && diff > -1) weightInterp = `Turun ${Math.abs(diff).toFixed(1)} kg. Bisa jadi cairan berkurang. Pastikan makan cukup dan tidak kurang dari 1300 kcal.`;
+    else weightInterp = `Turun ${Math.abs(diff).toFixed(1)} kg. Jika diikuti energi rendah — <strong>periksa asupan kalori</strong>. Penurunan cepat biasanya bukan lemak.`;
+
+    // Gym recommendation
+    let gymRec = '';
+    if (digestion === 'diarrhea' || energy <= 2) {
+      gymRec = '🚫 <strong>Tidak disarankan gym hari ini.</strong> Tubuh sedang butuh energi untuk recovery. Istirahat = strategi.';
+    } else if (energy <= 4 || sleep < 6) {
+      gymRec = '⚠️ <strong>Gym boleh tapi turunkan intensitas 50%.</strong> Latihan ringan lebih baik dari skip total, tapi jangan push. Fokus mobility/stretching jika sangat lemas.';
+    } else if (gym.includes('no')) {
+      gymRec = '✅ Rest day yang direncanakan — bagus. Pastikan protein tetap terpenuhi di hari tanpa gym.';
+    } else {
+      gymRec = '✅ <strong>Lanjutkan latihan normal.</strong> Pastikan makan 1–1.5 jam sebelum gym dan konsumsi protein setelah selesai.';
+    }
+
+    // Tomorrow recommendation
+    let tomorrowFood = '';
+    if (digestion === 'diarrhea') {
+      tomorrowFood = 'Prioritaskan: nasi putih, pisang, air kelapa, oralit. Protein ringan: telur rebus, tahu. Hindari serat tinggi & lemak berlebih.';
+    } else if (energy <= 4) {
+      tomorrowFood = 'Pastikan sarapan/makan siang mengandung karbohidrat kompleks (nasi, oat) + protein. Jangan skip meal.';
+    } else {
+      tomorrowFood = 'Fokus capai 106g protein. Tambahkan sayur anti-inflamasi (brokoli, bayam). Minum air sejak pagi.';
+    }
+
+    // Render
+    const box = document.getElementById('analysisBox');
+    const content = document.getElementById('analysis-content');
+    document.getElementById('analysis-date-label').textContent = date + ' · Berat: ' + weight + ' kg';
+
+    content.innerHTML = `
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+        ${alerts.map(a => `<span class="alert-pill ${a.type==='danger'?'alert-danger':a.type==='warn'?'alert-warn':'alert-ok'}">${a.text}</span>`).join('')}
+      </div>
+      <div class="analysis-section">
+        <div class="analysis-section-title">⚖️ Interpretasi Berat Badan</div>
+        <div class="analysis-text">${weightInterp}</div>
+      </div>
+      <div class="analysis-section">
+        <div class="analysis-section-title">💪 Rekomendasi Latihan</div>
+        <div class="analysis-text">${gymRec}</div>
+      </div>
+      <div class="analysis-section">
+        <div class="analysis-section-title">🍽️ Rekomendasi Makan 24–48 Jam Ke Depan</div>
+        <div class="analysis-text">${tomorrowFood}</div>
+      </div>
+      ${water < 2 ? `<div class="analysis-section">
+        <div class="analysis-section-title">💧 Urgent: Hydration</div>
+        <div class="analysis-text">Minum ${(2 - water).toFixed(1)}L lagi hari ini. Tambahkan air kelapa atau elektrolit.</div>
+      </div>` : ''}
+      ${notes ? `<div class="analysis-section">
+        <div class="analysis-section-title">📝 Catatan Kondisi Khusus</div>
+        <div class="analysis-text">Dicatat: "${notes}" — Monitor dan laporkan ke dokter jika berlanjut lebih dari 3 hari.</div>
+      </div>` : ''}
+    `;
+    box.classList.add('show');
+  }, 900);
+}
+
+function saveDailyLog() {
+  const log = {
+    date: document.getElementById('d-date').value,
+    weight: document.getElementById('d-weight').value,
+    energy: document.getElementById('d-energy').value,
+    digestion: document.getElementById('d-digestion').value,
+    sleep: document.getElementById('d-sleep').value,
+    gym: document.getElementById('d-gym').value
+  };
+  if (!log.weight) return alert('Masukkan berat badan dulu ya!');
+  appData.dailyLogs.unshift(log);
+  if (appData.dailyLogs.length > 30) appData.dailyLogs.pop();
+  saveStorage();
+  renderHistTable();
+  alert('✅ Log tersimpan!');
+}
+
+function renderHistTable() {
+  const tbody = document.getElementById('histBody');
+  if (!appData.dailyLogs.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="color:var(--soft);font-size:12px;padding:16px 10px;">Belum ada log.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = appData.dailyLogs.slice(0,10).map(l => `
+    <tr>
+      <td>${l.date}</td>
+      <td><strong>${l.weight} kg</strong></td>
+      <td>${l.energy}/10</td>
+      <td>${l.digestion}</td>
+      <td>${l.sleep} jam</td>
+      <td>${l.gym.includes('yes')?'✅':'❌'}</td>
+    </tr>
+  `).join('');
+}
+
+// ── CHARTS ──
+let weightChart, compChart;
+let weeklyEntries = [
+  { date: '19 Apr', weight: 53.1, bfp: 34.2, muscle: 33.1, energy: 5, gym: 3 }
+];
+
+function initCharts() {
+  drawWeightChart();
+  drawCompChart();
+}
+
+function drawWeightChart() {
+  const canvas = document.getElementById('weightChart');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth * window.devicePixelRatio || 600;
+  canvas.height = 200 * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const W = canvas.offsetWidth || 600, H = 200;
+
+  const data = weeklyEntries;
+  const weights = data.map(d => d.weight);
+  const minW = Math.min(...weights) - 1, maxW = Math.max(...weights) + 1;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(28,23,20,0.05)'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = 20 + (i / 4) * (H - 40);
+    ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(W - 20, y); ctx.stroke();
+  }
+
+  if (data.length < 2) {
+    ctx.fillStyle = '#B8A89E'; ctx.font = '12px DM Sans'; ctx.textAlign = 'center';
+    ctx.fillText('Tambahkan lebih banyak data untuk melihat trend', W/2, H/2);
+    return;
+  }
+
+  // Line
+  const xStep = (W - 60) / (data.length - 1);
+  const toY = w => 20 + (1 - (w - minW) / (maxW - minW)) * (H - 40);
+  const toX = i => 40 + i * xStep;
+
+  // Fill area
+  ctx.beginPath(); ctx.moveTo(toX(0), toY(weights[0]));
+  data.forEach((d, i) => ctx.lineTo(toX(i), toY(d.weight)));
+  ctx.lineTo(toX(data.length-1), H-20); ctx.lineTo(toX(0), H-20); ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, 'rgba(196,113,74,0.2)'); grad.addColorStop(1, 'rgba(196,113,74,0.02)');
+  ctx.fillStyle = grad; ctx.fill();
+
+  // Line stroke
+  ctx.beginPath(); ctx.moveTo(toX(0), toY(weights[0]));
+  data.forEach((d, i) => ctx.lineTo(toX(i), toY(d.weight)));
+  ctx.strokeStyle = '#C4714A'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke();
+
+  // Dots + labels
+  data.forEach((d, i) => {
+    ctx.beginPath(); ctx.arc(toX(i), toY(d.weight), 5, 0, Math.PI*2);
+    ctx.fillStyle = 'white'; ctx.fill();
+    ctx.strokeStyle = '#C4714A'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = '#3D2E28'; ctx.font = '10px DM Mono'; ctx.textAlign = 'center';
+    ctx.fillText(d.weight, toX(i), toY(d.weight) - 10);
+    ctx.fillStyle = '#B8A89E'; ctx.font = '9px DM Sans';
+    ctx.fillText(d.date, toX(i), H - 5);
+  });
+}
+
+function drawCompChart() {
+  const canvas = document.getElementById('compChart');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth * window.devicePixelRatio || 600;
+  canvas.height = 200 * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const W = canvas.offsetWidth || 600, H = 200;
+
+  const data = weeklyEntries.filter(d => d.bfp && d.muscle);
+  ctx.clearRect(0, 0, W, H);
+
+  if (data.length < 2) {
+    ctx.fillStyle = '#B8A89E'; ctx.font = '12px DM Sans'; ctx.textAlign = 'center';
+    ctx.fillText('Tambahkan data BFP & Muscle untuk melihat trend komposisi', W/2, H/2);
+    return;
+  }
+
+  const xStep = (W - 60) / (data.length - 1);
+  const toX = i => 40 + i * xStep;
+
+  const drawLine = (vals, color, minV, maxV) => {
+    const toY = v => 20 + (1 - (v - minV) / (maxV - minV)) * (H - 40);
+    ctx.beginPath(); ctx.moveTo(toX(0), toY(vals[0]));
+    vals.forEach((v, i) => ctx.lineTo(toX(i), toY(v)));
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+    vals.forEach((v, i) => {
+      ctx.beginPath(); ctx.arc(toX(i), toY(v), 4, 0, Math.PI*2);
+      ctx.fillStyle = 'white'; ctx.fill();
+      ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = color; ctx.font = '10px DM Mono'; ctx.textAlign = 'center';
+      ctx.fillText(v, toX(i), toY(v) - 10);
+    });
+  };
+
+  const bfps = data.map(d => d.bfp);
+  const muscles = data.map(d => d.muscle);
+  drawLine(bfps, '#C4714A', Math.min(...bfps)-2, Math.max(...bfps)+2);
+  drawLine(muscles, '#6E9E7E', Math.min(...muscles)-2, Math.max(...muscles)+2);
+
+  // Legend
+  ctx.fillStyle = '#C4714A'; ctx.fillRect(W-100, 15, 12, 3);
+  ctx.fillStyle = '#7A6860'; ctx.font = '10px DM Sans'; ctx.textAlign = 'left';
+  ctx.fillText('BFP %', W-83, 19);
+  ctx.fillStyle = '#6E9E7E'; ctx.fillRect(W-100, 28, 12, 3);
+  ctx.fillText('Muscle kg', W-83, 32);
+}
+
+function addWeeklyData() {
+  const date = document.getElementById('w-date').value;
+  const weight = parseFloat(document.getElementById('w-weight').value);
+  if (!date || !weight) return alert('Masukkan tanggal dan berat dulu!');
+
+  const entry = {
+    date: date.slice(5), // MM-DD
+    weight,
+    bfp: parseFloat(document.getElementById('w-bfp').value) || null,
+    muscle: parseFloat(document.getElementById('w-muscle').value) || null,
+    energy: parseInt(document.getElementById('w-energy').value) || null,
+    gym: parseInt(document.getElementById('w-gym').value) || 0
+  };
+
+  weeklyEntries.push(entry);
+  weeklyEntries.sort((a,b) => a.date.localeCompare(b.date));
+  updateWeeklyChart();
+
+  ['w-weight','w-bfp','w-muscle','w-energy','w-gym'].forEach(id => document.getElementById(id).value = '');
+}
+
+function updateWeeklyChart() {
+  drawWeightChart();
+  drawCompChart();
+  updateWeeklyStats();
+}
+
+function updateWeeklyStats() {
+  if (weeklyEntries.length < 1) return;
+  const last = weeklyEntries[weeklyEntries.length-1];
+  const first = weeklyEntries[0];
+  const diff = last.weight - first.weight;
+  const avg = (weeklyEntries.reduce((s,d) => s+d.weight, 0) / weeklyEntries.length).toFixed(1);
+  const totalGym = weeklyEntries.reduce((s,d) => s+(d.gym||0), 0);
+
+  document.getElementById('ws-current').textContent = last.weight + ' kg';
+  document.getElementById('ws-change').textContent = (diff >= 0 ? '+' : '') + diff.toFixed(1) + ' kg';
+  document.getElementById('ws-chg-label').className = 'week-stat-chg ' + (diff > 0 ? 'chg-up' : 'chg-down');
+  document.getElementById('ws-avg').textContent = avg + ' kg';
+  document.getElementById('ws-sessions').textContent = totalGym + 'x';
+
+  if (weeklyEntries.length >= 2) {
+    const insight = document.getElementById('weekInsight').querySelector('.insight-text');
+    let txt = '';
+    if (diff < 0 && diff > -1) txt = `Turun ${Math.abs(diff.toFixed(1))} kg dari data pertama — perubahan positif dan realistis. Pertahankan!`;
+    else if (diff < -1) txt = `Turun ${Math.abs(diff.toFixed(1))} kg — pastikan ini bukan dari massa otot. Cek apakah protein 106g/hari terpenuhi.`;
+    else if (diff > 0.5) txt = `Naik ${diff.toFixed(1)} kg — kemungkinan besar fluktuasi cairan. Jangan panik. Fokus pada how you FEEL dan kekuatan di gym.`;
+    else txt = `Berat relatif stabil. Ini bisa berarti body recomposition sedang berjalan (lemak turun, otot naik). Ukur lingkar pinggang untuk konfirmasi.`;
+    insight.innerHTML = txt;
+  }
+}
+
+// ── DECISION MODE ──
+const decisionDB = [
+  { keys: ['gym','latihan','olahraga'], cond: (n) => n.includes('lemas') || n.includes('energi rendah') || n.includes('sakit'), verdict: 'TUNDA', type: 'no', reason: 'Tubuh butuh energi untuk recovery lebih dari yang dibutuhkan untuk gym. Rest hari ini = investasi untuk besok.', action: 'Istirahat aktif: jalan santai 20–30 menit kalau mau gerak. Pastikan makan cukup protein & tidur 7–8 jam malam ini.' },
+  { keys: ['gym','latihan'], cond: () => true, verdict: 'YA', type: 'yes', reason: 'Gym 4x/week adalah fondasi program kamu. Selama energi ≥5/10 dan tidak sedang diare/sakit, latihan tetap jalan.', action: 'Makan 1–1.5 jam sebelum gym (karbohidrat + protein). Minum air 500ml sebelum mulai. Protein setelah selesai.' },
+  { keys: ['nasi','karbohidrat','karbo'], cond: () => true, verdict: 'YA', type: 'yes', reason: 'Kamu bukan low-carb diet. Dengan target 1400–1550 kcal, karbohidrat kompleks adalah teman — bukan musuh.', action: 'Porsi wajar (100–150g nasi matang). Lebih baik dimakan siang/sore daripada malam. Kombinasikan dengan protein.' },
+  { keys: ['skip','lewat makan','puasa'], cond: () => true, verdict: 'JANGAN', type: 'no', reason: 'Dengan BMR hanya 1138 kcal, skipping meal akan memperlambat metabolisme lebih jauh dan berisiko muscle breakdown.', action: 'Makan minimal 3x per hari. Jika tidak lapar, makan yang kecil tapi protein tinggi: telur, yogurt, atau tahu.' },
+  { keys: ['kembung','bloat'], cond: () => true, verdict: 'NORMAL', type: 'maybe', reason: 'Kembung bisa dari: makan terlalu cepat, gula/artifisial sweetener, serat tinggi tiba-tiba, atau kondisi autoimun.', action: 'Makan pelan, kunyah sempurna. Hindari minuman bersoda. Jahe/teh peppermint bisa bantu. Jika > 3 hari, catat makanan pemicunya.' },
+  { keys: ['kopi','kafein','coffee'], cond: () => true, verdict: 'BOLEH', type: 'yes', reason: 'Kopi sebelum gym bisa meningkatkan performa dan fokus. Tapi sensitif untuk kondisi autoimun — monitor respons tubuhmu.', action: 'Max 1 cangkir, 30–45 menit sebelum gym. Jangan kalau perut kosong. Pastikan sudah makan terlebih dahulu.' },
+  { keys: ['naik','berat naik'], cond: () => true, verdict: 'NORMAL', type: 'maybe', reason: 'Berat naik 0.5–1.5 kg dalam sehari adalah fluktuasi NORMAL dari cairan, makanan, siklus hormonal — BUKAN lemak baru.', action: 'Jangan panik. Minum lebih banyak air (paradoksnya ini membantu). Kurangi sodium. Ukur lagi dalam 2–3 hari.' },
+  { keys: ['gorengan','junk','cheat'], cond: () => true, verdict: 'SEKALI-SEKALI OK', type: 'maybe', reason: 'Satu porsi gorengan tidak merusak progress. Yang merusak adalah pola, bukan satu kejadian. Perfeksionisme berbahaya untuk sustainability.', action: 'Nikmati tanpa guilt. Pastikan hari itu tetap capai target protein. Kembali ke plan normal di meal berikutnya.' },
+  { keys: ['flare','psoriasis','urtikaria'], cond: () => true, verdict: 'ISTIRAHAT', type: 'no', reason: 'Flare adalah sinyal bahwa sistem imun sedang aktif bekerja. Gym saat flare parah bisa memperpanjang episode.', action: 'Istirahat dari latihan berat. Anti-inflamasi: ikan, kunyit, jahe. Cukup tidur. Hubungi dokter dermatologi jika parah.' },
+  { keys: ['lemas','lemah','lelah','capek'], cond: () => true, verdict: 'CEK DULU', type: 'maybe', reason: 'Lemas bisa dari: kurang makan, kurang tidur, dehidrasi, atau kondisi tiroid. Penting untuk tahu penyebabnya sebelum push.', action: 'Cek: sudah makan? (makan dulu). Minum air? (minum 500ml). Tidur < 7 jam? (prioritaskan tidur malam ini).' },
+];
+
+function getDecision() {
+  const input = document.getElementById('decisionInput').value.trim();
+  if (!input) return;
+  processDecision(input);
+  document.getElementById('decisionInput').value = '';
+}
+
+function quickDecision(q) {
+  document.getElementById('decisionInput').value = q;
+  processDecision(q);
+}
+
+function processDecision(question) {
+  const q = question.toLowerCase();
+  let match = decisionDB.find(d => d.keys.some(k => q.includes(k)) && d.cond(q));
+  if (!match) {
+    match = {
+      verdict: 'PERLU KONTEKS', type: 'maybe',
+      reason: 'Pertanyaan ini butuh konteks lebih untuk dijawab dengan tepat. Tapi aturan umum: dengarkan tubuhmu, jangan ekstrem, dan prioritaskan protein + tidur.',
+      action: 'Kirim detail lebih: energimu berapa (1–10), pencernaan bagaimana, sudah makan apa. Semakin detail, semakin tepat jawabannya.'
+    };
+  }
+
+  const result = document.getElementById('decisionResult');
+  const verdict = document.getElementById('decisionVerdict');
+  document.getElementById('verdictBadge').textContent = match.verdict;
+  document.getElementById('verdictBadge').className = 'verdict-badge ' + (match.type==='yes'?'vb-yes':match.type==='no'?'vb-no':'vb-maybe');
+  verdict.className = 'decision-verdict ' + (match.type==='yes'?'verdict-yes':match.type==='no'?'verdict-no':'verdict-maybe');
+  document.getElementById('verdictQ').textContent = '"' + question + '"';
+  document.getElementById('verdictReason').textContent = match.reason;
+  document.getElementById('verdictAction').textContent = match.action;
+  result.classList.add('show');
+
+  // Add to history
+  appData.decisionHistory.unshift({ q: question, verdict: match.verdict, time: new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'}) });
+  if (appData.decisionHistory.length > 10) appData.decisionHistory.pop();
+  saveStorage();
+
+  const histList = document.getElementById('decisionHistList');
+  histList.innerHTML = appData.decisionHistory.map(h =>
+    `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(28,23,20,0.05);">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--soft);">${h.time}</span>
+      <span style="flex:1;font-size:12px;color:var(--ink);">${h.q}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:var(--terra);">${h.verdict}</span>
+    </div>`
+  ).join('') || '<span style="color:var(--soft);font-size:12px;">Belum ada pertanyaan.</span>';
+}
+
+// ── ALERTS ──
+function checkAlerts() {
+  const cal = parseInt(document.getElementById('al-cal').value) || 0;
+  const prot = parseInt(document.getElementById('al-prot').value) || 0;
+  const sleep = parseFloat(document.getElementById('al-sleep').value) || 0;
+  const skin = document.getElementById('al-skin').value;
+
+  let alerts = [];
+
+  if (cal > 0 && cal < 1300) alerts.push({ type: 'danger', title: '🚨 Under-eating Terdeteksi!', desc: `Kalori ${cal} kcal jauh di bawah minimum 1300 kcal. Ini akan memicu muscle catabolism dan memperlambat BMR lebih jauh.`, fix: 'Tambahkan 1–2 meal lagi hari ini. Protein shake, telur, atau yogurt bisa jadi pilihan cepat.' });
+  if (prot > 0 && prot < 80) alerts.push({ type: 'danger', title: '🚨 Protein Kritis!', desc: `Protein ${prot}g jauh di bawah target 106g. Risiko muscle loss tinggi — tubuh akan mengambil protein dari otot.`, fix: 'Tambahkan minimal 2 sumber protein lagi hari ini. Ayam 100g = 31g protein, telur 1 butir = 6g.' });
+  else if (prot > 0 && prot < 100) alerts.push({ type: 'warn', title: '⚠️ Protein Mendekati Batas', desc: `Protein ${prot}g. Targetmu 106g — kurang ${106-prot}g lagi.`, fix: 'Tambahkan 1 porsi protein lagi: tahu 100g (8g), Greek yogurt (13g), atau telur 2 butir (12g).' });
+  if (sleep < 6) alerts.push({ type: 'danger', title: '🚨 Tidur Kritis!', desc: `Tidur ${sleep} jam sangat kurang. Cortisol naik, GH turun — ini langsung menghambat recovery otot dan mendorong penyimpanan lemak perut.`, fix: 'Tidur lebih awal malam ini. Matikan layar 30 menit sebelum tidur. Magnesium glycinate bisa bantu.' });
+  if (skin === 'bad' || skin === 'urtik') alerts.push({ type: 'danger', title: '🔥 Flare Aktif — Kurangi Beban', desc: 'Flare parah = inflamasi sistemik tinggi. Latihan keras akan memperburuk kondisi.', fix: 'Istirahat dari gym 2–3 hari. Anti-inflamasi: ikan berlemak, kunyit, jahe. Tidur cukup. Hubungi dokter.' });
+
+  const container = document.getElementById('dynamicAlerts');
+  if (alerts.length === 0) {
+    container.innerHTML = '<div class="alert-card alert-ok-card"><div class="alert-emoji">✅</div><div class="alert-body"><div class="alert-title">Kondisi Aman</div><div class="alert-desc">Tidak ada risiko terdeteksi dari data yang kamu input hari ini. Pertahankan!</div></div></div>';
+  } else {
+    container.innerHTML = alerts.map(a => `
+      <div class="alert-card ${a.type==='danger'?'alert-danger-card':'alert-warn-card'}">
+        <div class="alert-emoji">${a.type==='danger'?'🚨':'⚠️'}</div>
+        <div class="alert-body">
+          <div class="alert-title">${a.title}</div>
+          <div class="alert-desc">${a.desc}</div>
+          <div class="alert-fix">
+            <div class="alert-fix-label">⚡ Koreksi Sekarang</div>
+            <div class="alert-fix-text">${a.fix}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+// ── MEAL LOG ──
+let foods = [];
+
+function addFood() {
+  const name = document.getElementById('f-name').value.trim();
+  const prot = parseFloat(document.getElementById('f-prot').value) || 0;
+  const carb = parseFloat(document.getElementById('f-carb').value) || 0;
+  const fat = parseFloat(document.getElementById('f-fat').value) || 0;
+  if (!name) return;
+  foods.push({ name, prot, carb, fat, cal: Math.round(prot*4 + carb*4 + fat*9) });
+  ['f-name','f-prot','f-carb','f-fat'].forEach(id => document.getElementById(id).value = '');
+  renderFoodList();
+}
+
+function addFoodQuick(name, prot, carb, fat) {
+  foods.push({ name, prot, carb, fat, cal: Math.round(prot*4 + carb*4 + fat*9) });
+  renderFoodList();
+}
+
+function removeFood(i) {
+  foods.splice(i, 1);
+  renderFoodList();
+}
+
+function renderFoodList() {
+  const list = document.getElementById('foodList');
+  if (!foods.length) {
+    list.innerHTML = '<li style="color:var(--soft);font-size:12px;padding:8px;">Belum ada makanan. Tambahkan di atas! 👆</li>';
+    updateTotals();
+    return;
+  }
+  list.innerHTML = foods.map((f, i) => `
+    <li class="logged-food-item">
+      <span class="logged-food-name">${f.name}</span>
+      <span class="logged-food-macro">${f.prot}g P</span>
+      <span class="logged-food-macro">${f.carb}g C</span>
+      <span class="logged-food-macro">${f.fat}g F</span>
+      <span class="logged-food-macro">${f.cal} kcal</span>
+      <button class="logged-food-del" onclick="removeFood(${i})">✕</button>
+    </li>
+  `).join('');
+  updateTotals();
+}
+
+function updateTotals() {
+  const totP = foods.reduce((s,f) => s+f.prot, 0);
+  const totC = foods.reduce((s,f) => s+f.carb, 0);
+  const totF = foods.reduce((s,f) => s+f.fat, 0);
+  const totCal = foods.reduce((s,f) => s+f.cal, 0);
+
+  document.getElementById('totalCal').textContent = totCal;
+  document.getElementById('totalProt').textContent = totP + 'g';
+  document.getElementById('totalCarb').textContent = totC + 'g';
+  document.getElementById('totalFat').textContent = totF + 'g';
+  document.getElementById('proteinTotal').textContent = totP + 'g';
+
+  // Ring
+  const pct = Math.min(totP / 106, 1);
+  const circ = 251;
+  document.getElementById('proteinArc').style.strokeDashoffset = circ - (pct * circ);
+
+  // Status
+  const statusEl = document.getElementById('proteinStatus');
+  if (totP >= 106) { statusEl.textContent = '🎉 Target protein tercapai!'; statusEl.style.color = 'var(--sage)'; }
+  else if (totP >= 80) { statusEl.textContent = `Kurang ${106-totP}g lagi untuk capai target`; statusEl.style.color = 'var(--gold)'; }
+  else if (totP > 0) { statusEl.textContent = `Baru ${totP}g — butuh ${106-totP}g lagi`; statusEl.style.color = 'var(--terra)'; }
+  else { statusEl.textContent = 'Belum ada makanan ditambahkan'; statusEl.style.color = 'var(--mid)'; }
+
+  // Cal alert
+  if (totCal > 0 && totCal < 1300) {
+    if (!document.getElementById('calAlert')) {
+      const al = document.createElement('div');
+      al.id = 'calAlert';
+      al.className = 'insight danger';
+      al.innerHTML = '<div class="insight-tag">🚨 Under-eating Alert</div><div class="insight-text">Kalori di bawah 1300 kcal. Tambahkan makanan lagi — tubuhmu butuh bahan bakar untuk recovery dan pertumbuhan otot.</div>';
+      document.getElementById('foodList').after(al);
+    }
+  } else {
+    const old = document.getElementById('calAlert');
+    if (old) old.remove();
+  }
+}
+
+// ── HABITS ──
+function toggleTile(el) {
+  el.classList.toggle('done');
+  const all = document.querySelectorAll('.tracker-tile');
+  const done = document.querySelectorAll('.tracker-tile.done');
+  document.getElementById('celebrate').classList.toggle('show', done.length === all.length);
+}
+
+function fillCup(el) {
+  el.classList.toggle('full');
+  const filled = document.querySelectorAll('.cup.full').length;
+  document.getElementById('waterCount').textContent = filled;
+}
+
+</script>
+</body>
+</html>
